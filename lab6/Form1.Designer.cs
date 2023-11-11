@@ -31,10 +31,18 @@ namespace lab6
         {
             this.pathInput = new System.Windows.Forms.TextBox();
             this.selectFile = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.dataFormat = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.editField = new System.Windows.Forms.TextBox();
             this.labelsContainer = new System.Windows.Forms.FlowLayoutPanel();
+            this.integerLabel = new System.Windows.Forms.Label();
+            this.doubleLabel = new System.Windows.Forms.Label();
+            this.textLabel = new System.Windows.Forms.Label();
+            this.nameLabel = new System.Windows.Forms.Label();
+            this.surnameLabel = new System.Windows.Forms.Label();
+            this.birthDateLabel = new System.Windows.Forms.Label();
+            this.heightLabel = new System.Windows.Forms.Label();
+            this.weightLabel = new System.Windows.Forms.Label();
             this.InputsContainer = new System.Windows.Forms.FlowLayoutPanel();
             this.integerInput = new System.Windows.Forms.TextBox();
             this.doubleInput = new System.Windows.Forms.TextBox();
@@ -44,17 +52,9 @@ namespace lab6
             this.birthDateInput = new System.Windows.Forms.TextBox();
             this.heightInput = new System.Windows.Forms.TextBox();
             this.weightInput = new System.Windows.Forms.TextBox();
-            this.saveButton = new System.Windows.Forms.Button();
-            this.integerLabel = new System.Windows.Forms.Label();
-            this.doubleLabel = new System.Windows.Forms.Label();
-            this.textLabel = new System.Windows.Forms.Label();
-            this.nameLabel = new System.Windows.Forms.Label();
-            this.surnameLabel = new System.Windows.Forms.Label();
-            this.birthDateLabel = new System.Windows.Forms.Label();
-            this.heightLabel = new System.Windows.Forms.Label();
-            this.weightLabel = new System.Windows.Forms.Label();
-            this.read = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.readButton = new System.Windows.Forms.Button();
             this.labelsContainer.SuspendLayout();
             this.InputsContainer.SuspendLayout();
             this.SuspendLayout();
@@ -78,13 +78,21 @@ namespace lab6
             this.selectFile.Text = "Przeglądaj";
             this.selectFile.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // dataFormat
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(16, 78);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 2;
+            this.dataFormat.FormattingEnabled = true;
+            this.dataFormat.Items.AddRange(new object[] {
+            "Całkowite",
+            "Rzeczywiste",
+            "Calkowita, rzeczywista i tekst",
+            "Osoba",
+            "Całkowite i rzczywiste",
+            "Osoby"});
+            this.dataFormat.Location = new System.Drawing.Point(16, 78);
+            this.dataFormat.Name = "dataFormat";
+            this.dataFormat.Size = new System.Drawing.Size(121, 21);
+            this.dataFormat.TabIndex = 2;
+            this.dataFormat.SelectedIndexChanged += new System.EventHandler(this.dataFormat_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -95,17 +103,17 @@ namespace lab6
             this.label1.TabIndex = 3;
             this.label1.Text = "Format zapisywania";
             // 
-            // textBox1
+            // editField
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.editField.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(16, 112);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.textBox1.Size = new System.Drawing.Size(1162, 375);
-            this.textBox1.TabIndex = 4;
+            this.editField.Location = new System.Drawing.Point(16, 112);
+            this.editField.Multiline = true;
+            this.editField.Name = "editField";
+            this.editField.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
+            this.editField.Size = new System.Drawing.Size(1162, 375);
+            this.editField.TabIndex = 4;
             // 
             // labelsContainer
             // 
@@ -121,89 +129,6 @@ namespace lab6
             this.labelsContainer.Name = "labelsContainer";
             this.labelsContainer.Size = new System.Drawing.Size(980, 31);
             this.labelsContainer.TabIndex = 13;
-            // 
-            // InputsContainer
-            // 
-            this.InputsContainer.Controls.Add(this.integerInput);
-            this.InputsContainer.Controls.Add(this.doubleInput);
-            this.InputsContainer.Controls.Add(this.textInput);
-            this.InputsContainer.Controls.Add(this.nameInput);
-            this.InputsContainer.Controls.Add(this.surnameInput);
-            this.InputsContainer.Controls.Add(this.birthDateInput);
-            this.InputsContainer.Controls.Add(this.heightInput);
-            this.InputsContainer.Controls.Add(this.weightInput);
-            this.InputsContainer.Controls.Add(this.addButton);
-            this.InputsContainer.Controls.Add(this.saveButton);
-            this.InputsContainer.Location = new System.Drawing.Point(152, 76);
-            this.InputsContainer.Name = "InputsContainer";
-            this.InputsContainer.Size = new System.Drawing.Size(1026, 29);
-            this.InputsContainer.TabIndex = 14;
-            // 
-            // integerInput
-            // 
-            this.integerInput.Location = new System.Drawing.Point(3, 3);
-            this.integerInput.Name = "integerInput";
-            this.integerInput.Size = new System.Drawing.Size(100, 20);
-            this.integerInput.TabIndex = 19;
-            this.integerInput.TextChanged += new System.EventHandler(this.integerInput_TextChanged_1);
-            // 
-            // doubleInput
-            // 
-            this.doubleInput.Location = new System.Drawing.Point(109, 3);
-            this.doubleInput.Name = "doubleInput";
-            this.doubleInput.Size = new System.Drawing.Size(100, 20);
-            this.doubleInput.TabIndex = 21;
-            // 
-            // textInput
-            // 
-            this.textInput.Location = new System.Drawing.Point(215, 3);
-            this.textInput.Name = "textInput";
-            this.textInput.Size = new System.Drawing.Size(100, 20);
-            this.textInput.TabIndex = 22;
-            // 
-            // nameInput
-            // 
-            this.nameInput.Location = new System.Drawing.Point(321, 3);
-            this.nameInput.Name = "nameInput";
-            this.nameInput.Size = new System.Drawing.Size(100, 20);
-            this.nameInput.TabIndex = 23;
-            // 
-            // surnameInput
-            // 
-            this.surnameInput.Location = new System.Drawing.Point(427, 3);
-            this.surnameInput.Name = "surnameInput";
-            this.surnameInput.Size = new System.Drawing.Size(100, 20);
-            this.surnameInput.TabIndex = 24;
-            // 
-            // birthDateInput
-            // 
-            this.birthDateInput.Location = new System.Drawing.Point(533, 3);
-            this.birthDateInput.Name = "birthDateInput";
-            this.birthDateInput.Size = new System.Drawing.Size(100, 20);
-            this.birthDateInput.TabIndex = 25;
-            // 
-            // heightInput
-            // 
-            this.heightInput.Location = new System.Drawing.Point(639, 3);
-            this.heightInput.Name = "heightInput";
-            this.heightInput.Size = new System.Drawing.Size(100, 20);
-            this.heightInput.TabIndex = 26;
-            // 
-            // weightInput
-            // 
-            this.weightInput.Location = new System.Drawing.Point(745, 3);
-            this.weightInput.Name = "weightInput";
-            this.weightInput.Size = new System.Drawing.Size(100, 20);
-            this.weightInput.TabIndex = 27;
-            // 
-            // saveButton
-            // 
-            this.saveButton.Location = new System.Drawing.Point(932, 3);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(70, 23);
-            this.saveButton.TabIndex = 28;
-            this.saveButton.Text = "Zapisze";
-            this.saveButton.UseVisualStyleBackColor = true;
             // 
             // integerLabel
             // 
@@ -286,14 +211,78 @@ namespace lab6
             this.weightLabel.TabIndex = 28;
             this.weightLabel.Text = "Waga";
             // 
-            // read
+            // InputsContainer
             // 
-            this.read.Location = new System.Drawing.Point(1103, 10);
-            this.read.Name = "read";
-            this.read.Size = new System.Drawing.Size(75, 23);
-            this.read.TabIndex = 29;
-            this.read.Text = "Odczytaj";
-            this.read.UseVisualStyleBackColor = true;
+            this.InputsContainer.Controls.Add(this.integerInput);
+            this.InputsContainer.Controls.Add(this.doubleInput);
+            this.InputsContainer.Controls.Add(this.textInput);
+            this.InputsContainer.Controls.Add(this.nameInput);
+            this.InputsContainer.Controls.Add(this.surnameInput);
+            this.InputsContainer.Controls.Add(this.birthDateInput);
+            this.InputsContainer.Controls.Add(this.heightInput);
+            this.InputsContainer.Controls.Add(this.weightInput);
+            this.InputsContainer.Controls.Add(this.addButton);
+            this.InputsContainer.Controls.Add(this.saveButton);
+            this.InputsContainer.Location = new System.Drawing.Point(152, 76);
+            this.InputsContainer.Name = "InputsContainer";
+            this.InputsContainer.Size = new System.Drawing.Size(1026, 29);
+            this.InputsContainer.TabIndex = 14;
+            // 
+            // integerInput
+            // 
+            this.integerInput.Location = new System.Drawing.Point(3, 3);
+            this.integerInput.Name = "integerInput";
+            this.integerInput.Size = new System.Drawing.Size(100, 20);
+            this.integerInput.TabIndex = 19;
+            // 
+            // doubleInput
+            // 
+            this.doubleInput.Location = new System.Drawing.Point(109, 3);
+            this.doubleInput.Name = "doubleInput";
+            this.doubleInput.Size = new System.Drawing.Size(100, 20);
+            this.doubleInput.TabIndex = 21;
+            // 
+            // textInput
+            // 
+            this.textInput.Location = new System.Drawing.Point(215, 3);
+            this.textInput.Name = "textInput";
+            this.textInput.Size = new System.Drawing.Size(100, 20);
+            this.textInput.TabIndex = 22;
+            // 
+            // nameInput
+            // 
+            this.nameInput.Location = new System.Drawing.Point(321, 3);
+            this.nameInput.Name = "nameInput";
+            this.nameInput.Size = new System.Drawing.Size(100, 20);
+            this.nameInput.TabIndex = 23;
+            // 
+            // surnameInput
+            // 
+            this.surnameInput.Location = new System.Drawing.Point(427, 3);
+            this.surnameInput.Name = "surnameInput";
+            this.surnameInput.Size = new System.Drawing.Size(100, 20);
+            this.surnameInput.TabIndex = 24;
+            // 
+            // birthDateInput
+            // 
+            this.birthDateInput.Location = new System.Drawing.Point(533, 3);
+            this.birthDateInput.Name = "birthDateInput";
+            this.birthDateInput.Size = new System.Drawing.Size(100, 20);
+            this.birthDateInput.TabIndex = 25;
+            // 
+            // heightInput
+            // 
+            this.heightInput.Location = new System.Drawing.Point(639, 3);
+            this.heightInput.Name = "heightInput";
+            this.heightInput.Size = new System.Drawing.Size(100, 20);
+            this.heightInput.TabIndex = 26;
+            // 
+            // weightInput
+            // 
+            this.weightInput.Location = new System.Drawing.Point(745, 3);
+            this.weightInput.Name = "weightInput";
+            this.weightInput.Size = new System.Drawing.Size(100, 20);
+            this.weightInput.TabIndex = 27;
             // 
             // addButton
             // 
@@ -303,7 +292,25 @@ namespace lab6
             this.addButton.TabIndex = 29;
             this.addButton.Text = "Dodaj";
             this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            // 
+            // saveButton
+            // 
+            this.saveButton.Location = new System.Drawing.Point(932, 3);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(70, 23);
+            this.saveButton.TabIndex = 28;
+            this.saveButton.Text = "Zapisze";
+            this.saveButton.UseVisualStyleBackColor = true;
+            // 
+            // readButton
+            // 
+            this.readButton.Location = new System.Drawing.Point(1103, 10);
+            this.readButton.Name = "readButton";
+            this.readButton.Size = new System.Drawing.Size(75, 23);
+            this.readButton.TabIndex = 29;
+            this.readButton.Text = "Odczytaj";
+            this.readButton.UseVisualStyleBackColor = true;
+            this.readButton.Click += new System.EventHandler(this.read_Click);
             // 
             // Form1
             // 
@@ -312,12 +319,12 @@ namespace lab6
             this.ClientSize = new System.Drawing.Size(1190, 499);
             this.Controls.Add(this.InputsContainer);
             this.Controls.Add(this.labelsContainer);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.editField);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.dataFormat);
             this.Controls.Add(this.selectFile);
             this.Controls.Add(this.pathInput);
-            this.Controls.Add(this.read);
+            this.Controls.Add(this.readButton);
             this.Name = "Form1";
             this.Text = "Niezawodny program do swobodnego zapisywania i odczytywania różnorodnych danych w" +
     " formie binarnej";
@@ -335,9 +342,9 @@ namespace lab6
 
         private System.Windows.Forms.TextBox pathInput;
         private System.Windows.Forms.Button selectFile;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox dataFormat;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox editField;
         private System.Windows.Forms.FlowLayoutPanel labelsContainer;
         private System.Windows.Forms.FlowLayoutPanel InputsContainer;
         private System.Windows.Forms.TextBox integerInput;
@@ -357,7 +364,7 @@ namespace lab6
         private System.Windows.Forms.Label birthDateLabel;
         private System.Windows.Forms.Label heightLabel;
         private System.Windows.Forms.Label weightLabel;
-        private System.Windows.Forms.Button read;
+        private System.Windows.Forms.Button readButton;
         private System.Windows.Forms.Button addButton;
     }
 }

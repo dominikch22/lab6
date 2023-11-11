@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace lab6
 {
+    [Serializable]
     class Structure
     {
         public int intN;

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,7 +11,42 @@ namespace lab6
 {
     class BinaryFileReaderWriter
     {
-        public void saveIntegers(string path, int[] numbers) {
+
+        public static void SaveToFile<T>(string fileName, T data)
+        {
+            try
+            {
+                using (FileStream fs = new FileStream(fileName, FileMode.Create))
+                {
+                    IFormatter formatter = new BinaryFormatter();
+                    formatter.Serialize(fs, data);
+                }
+                Console.WriteLine($"Dane zapisano do pliku: {fileName}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Błąd podczas zapisywania do pliku {fileName}: {ex.Message}");
+            }
+        }
+
+        public static T ReadFromFile<T>(string fileName)
+        {
+            try
+            {
+                using (FileStream fs = new FileStream(fileName, FileMode.Open))
+                {
+                    IFormatter formatter = new BinaryFormatter();
+                    return (T)formatter.Deserialize(fs);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Błąd podczas odczytywania z pliku {fileName}: {ex.Message}");
+                return default(T);
+            }
+        }
+
+        /*public void saveIntegers(string path, int[] numbers) {
 
             using (BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.Create))) {
                 foreach (int i in numbers) {
@@ -17,6 +54,8 @@ namespace lab6
                 }
             }
         }
+
+
 
         public int[] readIntegers(string path) {
             using (BinaryReader reader = new BinaryReader(File.Open(path, FileMode.Open))) {
@@ -150,6 +189,6 @@ namespace lab6
                 }
                 return persons;
             }
-        }
+        }*/
     }
 }
