@@ -13,7 +13,7 @@ namespace lab6
 {
     public partial class Form1 : Form
     {
-        //private BinaryFileReaderWriter BinaryFileReaderWritero;
+        private BinaryFileReaderWriter BinaryFileReaderWriter;
         private List<int> Integers;
         private List<double> Doubles;
         private List<Person> Persons;
@@ -28,7 +28,7 @@ namespace lab6
             IntsDoubles = new List<Tuple<int, double>>();
 
             saveIntegersSelected();
-            //BinaryFileReaderWritero = new BinaryFileReaderWriter();
+            BinaryFileReaderWriter = new BinaryFileReaderWriter();
 
 
             //Integers.Add(12);
@@ -171,141 +171,296 @@ namespace lab6
 
 
         private void SaveIntegers(object sender, EventArgs e)
-        {        
-            BinaryFileReaderWriter.SaveToFile(pathInput.Text, Integers);
+        {
+            try
+            {
+                BinaryFileReaderWriter.saveIntegers(pathInput.Text, Integers);
+                erroLabel.Text = "";
+
+            }
+            catch (Exception ex)
+            {
+                erroLabel.Text = ex.Message;
+
+            }
         }
 
         private void ReadIntegers(object sender, EventArgs e)
         {
-            Integers = BinaryFileReaderWriter.ReadFromFile<List<int>>(pathInput.Text);
-            editField.Text = "";
-            foreach (int el in Integers) {
-                editField.Text += el + "\r\n";
+            try
+            {
+                Integers = BinaryFileReaderWriter.readIntegers(pathInput.Text);
+                editField.Text = "";
+                foreach (int el in Integers)
+                {
+                    editField.Text += el + "\r\n";
+                }
+                erroLabel.Text = "";
+
             }
+            catch (Exception ex)
+            {
+                erroLabel.Text = ex.Message;
+
+            }
+           
         }
 
         private void AddIntegers(object sender, EventArgs e)
         {
-            Integers.Add(int.Parse(integerInput.Text));
-            editField.Text = "";
-            foreach (int i in Integers) {
-                editField.Text += i + "\r\n";
+            try
+            {
+                Integers.Add(int.Parse(integerInput.Text));
+                editField.Text = "";
+                foreach (int i in Integers)
+                {
+                    editField.Text += i + "\r\n";
+                }
+                erroLabel.Text = "";
+
             }
+            catch (Exception ex)
+            {
+                erroLabel.Text = ex.Message;
+
+            }
+            
         }
 
         private void SaveDoubles(object sender, EventArgs e)
         {
-            BinaryFileReaderWriter.SaveToFile(pathInput.Text, Doubles);
+            try
+            {
+                BinaryFileReaderWriter.saveDoubles(pathInput.Text, Doubles);
+
+            }
+            catch (Exception ex)
+            {
+                erroLabel.Text = ex.Message;
+
+            }
         }
 
         private void readDoubles(object sender, EventArgs e)
         {
-            Doubles = BinaryFileReaderWriter.ReadFromFile<List<double>>(pathInput.Text);
-            editField.Text = "";
-            foreach (double el in Doubles)
+            try
             {
-                editField.Text += el + "\r\n";
+                Doubles = BinaryFileReaderWriter.readDoubles(pathInput.Text).ToList();
+                editField.Text = "";
+                foreach (double el in Doubles)
+                {
+                    editField.Text += el + "\r\n";
+                }
+                erroLabel.Text = "";
+
             }
+            catch (Exception ex)
+            {
+                erroLabel.Text = ex.Message;
+
+            }
+           
         }
 
         private void AddDoubles(object sender, EventArgs e)
         {
-            Doubles.Add(double.Parse(doubleInput.Text));
-            editField.Text = "";
-            foreach (double n in Doubles)
+            try
             {
-                editField.Text += n + "\r\n";
+                Doubles.Add(double.Parse(doubleInput.Text));
+                editField.Text = "";
+                foreach (double n in Doubles)
+                {
+                    editField.Text += n + "\r\n";
+                }
+                erroLabel.Text = "";
+
             }
+            catch (Exception ex)
+            {
+                erroLabel.Text = ex.Message;
+
+            }
+           
         }
 
         private void SaveStructure(object sender, EventArgs e)
         {
-            Structure structure = new Structure();
-            structure.IntN = int.Parse(integerInput.Text);
-            structure.DoubleN = double.Parse(doubleInput.Text);
-            structure.Text = textInput.Text;
-            BinaryFileReaderWriter.SaveToFile(pathInput.Text, structure);
+            try
+            {
+                Structure structure = new Structure();
+                structure.IntN = int.Parse(integerInput.Text);
+                structure.DoubleN = double.Parse(doubleInput.Text);
+                structure.Text = textInput.Text;
+                BinaryFileReaderWriter.saveStructure(pathInput.Text, structure);
 
-            editField.Text = $"{structure.IntN}, {structure.DoubleN}, {structure.Text}";
+                editField.Text = $"{structure.IntN}, {structure.DoubleN}, {structure.Text}";
+                erroLabel.Text = "";
+
+            }
+            catch (Exception ex)
+            {
+                erroLabel.Text = ex.Message;
+
+            }
+            
         }
 
         private void ReadStructure(object sender, EventArgs e)
-        {         
-            Structure structure = BinaryFileReaderWriter.ReadFromFile<Structure>(pathInput.Text);
+        {
+            try
+            {
+                Structure structure = BinaryFileReaderWriter.readStructure(pathInput.Text);
 
-            editField.Text = $"{structure.IntN}, {structure.DoubleN}, {structure.Text}";
+                editField.Text = $"{structure.IntN}, {structure.DoubleN}, {structure.Text}";
+                erroLabel.Text = "";
+
+            }
+            catch (Exception ex)
+            {
+                erroLabel.Text = ex.Message;
+
+            }
+          
         }
 
         private void SavePerson(object sender, EventArgs e)
         {
-            Person person = GetPerson();
-            editField.Text = person.ToString();
-            BinaryFileReaderWriter.SaveToFile(pathInput.Text, person);
+            try
+            {
+                Person person = GetPerson();
+                editField.Text = person.ToString();
+                BinaryFileReaderWriter.savePerson(pathInput.Text, person);
+                erroLabel.Text = "";
+
+            }
+            catch (Exception ex)
+            {
+                erroLabel.Text = ex.Message;
+
+            }
+           
         }
         private void ReadPerson(object sender, EventArgs e)
-        {            
-            Person person = BinaryFileReaderWriter.ReadFromFile<Person>(pathInput.Text);
-            editField.Text = person.ToString();
+        {
+            try
+            {
+                Person person = BinaryFileReaderWriter.readPerson(pathInput.Text);
+                editField.Text = person.ToString();
+                erroLabel.Text = "";
+
+            }
+            catch (Exception ex)
+            {
+                erroLabel.Text = ex.Message;
+
+            }
+           
         }
 
         private Person GetPerson() {
+
             Person person = new Person();
             person.Name = nameInput.Text;
             person.Surname = surnameInput.Text;
-            //person.BirthDate = long.Parse(birthDateInput.Text);
+            person.BirthDate = birthDateInput.Text;
             person.Height = double.Parse(heightInput.Text);
             person.Weight = double.Parse(weightInput.Text);
             return person;
         }
         private void AddPerson(object sender, EventArgs e)
         {
-            Persons.Add(GetPerson());
-            editField.Text = "";
-            foreach (Person el in Persons)
+            try
             {
-                editField.Text += el.ToString() + "\r\n";
+                Persons.Add(GetPerson());
+                editField.Text = "";
+                foreach (Person el in Persons)
+                {
+                    editField.Text += el.ToString() + "\r\n";
+                }
+                erroLabel.Text = "";
+
             }
+            catch (Exception ex)
+            {
+                erroLabel.Text = ex.Message;
+
+            }
+           
         }
 
         private void SavePersons(object sender, EventArgs e)
-        {        
-            BinaryFileReaderWriter.SaveToFile(pathInput.Text, Persons);
+        {
+            try
+            {
+                BinaryFileReaderWriter.savePersons(pathInput.Text, Persons);
+                erroLabel.Text = "";
+
+            }
+            catch (Exception ex)
+            {
+                erroLabel.Text = ex.Message;
+
+            }
         }
 
         private void readPersons(object sender, EventArgs e)
         {
-            Persons = BinaryFileReaderWriter.ReadFromFile<List<Person>>(pathInput.Text);
-            editField.Text = "";
-            foreach (Person el in Persons)
+            try
             {
-                editField.Text += el + "\r\n";
+                Persons = BinaryFileReaderWriter.readPersons(pathInput.Text);
+                editField.Text = "";
+                foreach (Person el in Persons)
+                {
+                    editField.Text += el + "\r\n";
+                }
+                erroLabel.Text = "";
+
             }
+            catch (Exception ex)
+            {
+                erroLabel.Text = ex.Message;
+
+            }
+           
         }
 
 
         private void SaveIntegersAndDoubles(object sender, EventArgs e)
         {
+            try
+            {
+                BinaryFileReaderWriter.saveIntegersAndDoubles(pathInput.Text, IntsDoubles);
+                erroLabel.Text = "";
+            }
+            catch (Exception ex) {
+                erroLabel.Text = ex.Message;
 
-            BinaryFileReaderWriter.SaveToFile(pathInput.Text, IntsDoubles);
+            }
         }
 
         private void AddIntegersAndDoubles(object sender, EventArgs e)
         {
-
-            Tuple<int, double> pair = Tuple.Create(int.Parse(integerInput.Text), double.Parse(doubleInput.Text));
-            IntsDoubles.Add(pair);
-            editField.Text = "";
-            foreach (Tuple<int, double> el in IntsDoubles)
+            try
             {
-                editField.Text += el.Item1 + ", "+ el.Item2 + "\r\n";
+                Tuple<int, double> pair = Tuple.Create(int.Parse(integerInput.Text), double.Parse(doubleInput.Text));
+                IntsDoubles.Add(pair);
+                editField.Text = "";
+                foreach (Tuple<int, double> el in IntsDoubles)
+                {
+                    editField.Text += el.Item1 + ", " + el.Item2 + "\r\n";
+                }
             }
+            catch (Exception ex) {
+                erroLabel.Text = ex.Message;
+            }
+          
         }
 
 
         private void ReadIntegersAndDoubles(object sender, EventArgs e)
         {
 
-            IntsDoubles = BinaryFileReaderWriter.ReadFromFile<List<Tuple<int, double>>>(pathInput.Text);
+            IntsDoubles = BinaryFileReaderWriter.readIntegersAndDoubles(pathInput.Text).ToList();
                              
             editField.Text = "";
             foreach (Tuple<int, double> el in IntsDoubles)
@@ -353,6 +508,7 @@ namespace lab6
                     savePersonsSelected();
                     break;
             }
+            labelsContainer.Controls.Add(erroLabel);
         }
 
         private void read_Click(object sender, EventArgs e)

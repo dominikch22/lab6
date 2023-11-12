@@ -306,7 +306,8 @@ namespace lab6
             // 
             // readButton
             // 
-            this.readButton.Location = new System.Drawing.Point(1103, 10);
+            this.readButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.readButton.Location = new System.Drawing.Point(1230, 10);
             this.readButton.Name = "readButton";
             this.readButton.Size = new System.Drawing.Size(75, 23);
             this.readButton.TabIndex = 29;

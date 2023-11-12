@@ -14,7 +14,17 @@ namespace lab6
         public string Surname;
         public double Height;
         public double Weight;
-        public DateTime BirthDate;
+        private string _birthdate;
+        public string BirthDate
+        {
+            get {
+                return _birthdate;
+            }
+            set {
+                DateTime.ParseExact(value, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                _birthdate = value;
+            }
+        }
 
         public override string ToString()
         {
@@ -25,7 +35,7 @@ namespace lab6
             Person person = new Person();
             person.Name = reader.ReadString();
             person.Surname = reader.ReadString();
-            //person.BirthDate = reader.ReadInt64();
+            person.BirthDate = reader.ReadString();
             person.Height = reader.ReadDouble();
             person.Weight = reader.ReadDouble();
 
@@ -36,7 +46,7 @@ namespace lab6
         {          
             writer.Write(person.Name);
             writer.Write(person.Surname);
-           // writer.Write(person.BirthDate);
+            writer.Write(person.BirthDate);
             writer.Write(person.Height);
             writer.Write(person.Weight);
         }
