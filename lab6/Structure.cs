@@ -9,8 +9,8 @@ namespace lab6
     [Serializable]
     class Structure
     {
-        public int intN;
-        public double doubleN;
-        public string text;
+        public int IntN;
+        public double DoubleN;
+        public string Text;
     }
 }

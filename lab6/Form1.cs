@@ -221,19 +221,19 @@ namespace lab6
         private void SaveStructure(object sender, EventArgs e)
         {
             Structure structure = new Structure();
-            structure.intN = int.Parse(integerInput.Text);
-            structure.doubleN = double.Parse(doubleInput.Text);
-            structure.text = textInput.Text;
+            structure.IntN = int.Parse(integerInput.Text);
+            structure.DoubleN = double.Parse(doubleInput.Text);
+            structure.Text = textInput.Text;
             BinaryFileReaderWriter.SaveToFile(pathInput.Text, structure);
 
-            editField.Text = $"{structure.intN}, {structure.doubleN}, {structure.text}";
+            editField.Text = $"{structure.IntN}, {structure.DoubleN}, {structure.Text}";
         }
 
         private void ReadStructure(object sender, EventArgs e)
         {         
             Structure structure = BinaryFileReaderWriter.ReadFromFile<Structure>(pathInput.Text);
 
-            editField.Text = $"{structure.intN}, {structure.doubleN}, {structure.text}";
+            editField.Text = $"{structure.IntN}, {structure.DoubleN}, {structure.Text}";
         }
 
         private void SavePerson(object sender, EventArgs e)
@@ -253,8 +253,8 @@ namespace lab6
             person.Name = nameInput.Text;
             person.Surname = surnameInput.Text;
             //person.BirthDate = long.Parse(birthDateInput.Text);
-            person.height = double.Parse(heightInput.Text);
-            person.weight = double.Parse(weightInput.Text);
+            person.Height = double.Parse(heightInput.Text);
+            person.Weight = double.Parse(weightInput.Text);
             return person;
         }
         private void AddPerson(object sender, EventArgs e)

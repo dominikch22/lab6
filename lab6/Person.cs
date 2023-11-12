@@ -12,25 +12,13 @@ namespace lab6
     {
         public string Name;
         public string Surname;
-
-     /*   private long _birthDate;
-        public long BirthDate
-        {
-            get {
-                return _birthDate;
-            }
-            set {
-                BirthDateTime = new DateTime(value);
-                _birthDate = value;
-            }
-        }*/
-        public double height;
-        public double weight;
+        public double Height;
+        public double Weight;
         public DateTime BirthDate;
 
         public override string ToString()
         {
-            return $"Osoba: {Name} {Surname}, data urodzenia: {BirthDate}, wzrost: {height} cm, waga: {weight} kg";
+            return $"Osoba: {Name} {Surname}, data urodzenia: {BirthDate}, wzrost: {Height} cm, waga: {Weight} kg";
         }
 
         public static Person readPerson(BinaryReader reader) {
@@ -38,8 +26,8 @@ namespace lab6
             person.Name = reader.ReadString();
             person.Surname = reader.ReadString();
             //person.BirthDate = reader.ReadInt64();
-            person.height = reader.ReadDouble();
-            person.weight = reader.ReadDouble();
+            person.Height = reader.ReadDouble();
+            person.Weight = reader.ReadDouble();
 
             return person;
         }
@@ -49,8 +37,8 @@ namespace lab6
             writer.Write(person.Name);
             writer.Write(person.Surname);
            // writer.Write(person.BirthDate);
-            writer.Write(person.height);
-            writer.Write(person.weight);
+            writer.Write(person.Height);
+            writer.Write(person.Weight);
         }
 
     }

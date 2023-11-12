@@ -55,6 +55,7 @@ namespace lab6
             this.addButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.readButton = new System.Windows.Forms.Button();
+            this.erroLabel = new System.Windows.Forms.Label();
             this.labelsContainer.SuspendLayout();
             this.InputsContainer.SuspendLayout();
             this.SuspendLayout();
@@ -65,13 +66,13 @@ namespace lab6
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pathInput.Location = new System.Drawing.Point(13, 13);
             this.pathInput.Name = "pathInput";
-            this.pathInput.Size = new System.Drawing.Size(1001, 20);
+            this.pathInput.Size = new System.Drawing.Size(1128, 20);
             this.pathInput.TabIndex = 0;
             // 
             // selectFile
             // 
             this.selectFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.selectFile.Location = new System.Drawing.Point(1022, 10);
+            this.selectFile.Location = new System.Drawing.Point(1149, 10);
             this.selectFile.Name = "selectFile";
             this.selectFile.Size = new System.Drawing.Size(75, 23);
             this.selectFile.TabIndex = 1;
@@ -112,7 +113,7 @@ namespace lab6
             this.editField.Multiline = true;
             this.editField.Name = "editField";
             this.editField.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.editField.Size = new System.Drawing.Size(1162, 375);
+            this.editField.Size = new System.Drawing.Size(1289, 375);
             this.editField.TabIndex = 4;
             // 
             // labelsContainer
@@ -125,6 +126,7 @@ namespace lab6
             this.labelsContainer.Controls.Add(this.birthDateLabel);
             this.labelsContainer.Controls.Add(this.heightLabel);
             this.labelsContainer.Controls.Add(this.weightLabel);
+            this.labelsContainer.Controls.Add(this.erroLabel);
             this.labelsContainer.Location = new System.Drawing.Point(152, 50);
             this.labelsContainer.Name = "labelsContainer";
             this.labelsContainer.Size = new System.Drawing.Size(980, 31);
@@ -312,11 +314,20 @@ namespace lab6
             this.readButton.UseVisualStyleBackColor = true;
             this.readButton.Click += new System.EventHandler(this.read_Click);
             // 
+            // erroLabel
+            // 
+            this.erroLabel.AutoSize = true;
+            this.erroLabel.ForeColor = System.Drawing.Color.OrangeRed;
+            this.erroLabel.Location = new System.Drawing.Point(851, 0);
+            this.erroLabel.Name = "erroLabel";
+            this.erroLabel.Size = new System.Drawing.Size(0, 13);
+            this.erroLabel.TabIndex = 29;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1190, 499);
+            this.ClientSize = new System.Drawing.Size(1317, 499);
             this.Controls.Add(this.InputsContainer);
             this.Controls.Add(this.labelsContainer);
             this.Controls.Add(this.editField);
@@ -366,6 +377,7 @@ namespace lab6
         private System.Windows.Forms.Label weightLabel;
         private System.Windows.Forms.Button readButton;
         private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.Label erroLabel;
     }
 }
 
