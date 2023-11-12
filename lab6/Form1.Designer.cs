@@ -56,6 +56,7 @@ namespace lab6
             this.saveButton = new System.Windows.Forms.Button();
             this.readButton = new System.Windows.Forms.Button();
             this.erroLabel = new System.Windows.Forms.Label();
+            this.clearMemoryButton = new System.Windows.Forms.Button();
             this.labelsContainer.SuspendLayout();
             this.InputsContainer.SuspendLayout();
             this.SuspendLayout();
@@ -326,11 +327,23 @@ namespace lab6
             this.erroLabel.Size = new System.Drawing.Size(0, 13);
             this.erroLabel.TabIndex = 29;
             // 
+            // clearMemoryButton
+            // 
+            this.clearMemoryButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.clearMemoryButton.Location = new System.Drawing.Point(1229, 78);
+            this.clearMemoryButton.Name = "clearMemoryButton";
+            this.clearMemoryButton.Size = new System.Drawing.Size(75, 23);
+            this.clearMemoryButton.TabIndex = 30;
+            this.clearMemoryButton.Text = "Wyczyść ";
+            this.clearMemoryButton.UseVisualStyleBackColor = true;
+            this.clearMemoryButton.Click += new System.EventHandler(this.clearMemoryButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1317, 499);
+            this.Controls.Add(this.clearMemoryButton);
             this.Controls.Add(this.InputsContainer);
             this.Controls.Add(this.labelsContainer);
             this.Controls.Add(this.editField);
@@ -381,6 +394,7 @@ namespace lab6
         private System.Windows.Forms.Button readButton;
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Label erroLabel;
+        private System.Windows.Forms.Button clearMemoryButton;
     }
 }
 

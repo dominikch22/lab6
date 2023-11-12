@@ -515,5 +515,13 @@ namespace lab6
         {
 
         }
+
+        private void clearMemoryButton_Click(object sender, EventArgs e)
+        {
+            Integers = new List<int>();
+            Doubles = new List<double>();
+            Persons = new List<Person>();
+            IntsDoubles = new List<Tuple<int, double>>();
+        }
     }
 }
