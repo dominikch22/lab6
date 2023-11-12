@@ -118,6 +118,8 @@ namespace lab6
             // 
             // labelsContainer
             // 
+            this.labelsContainer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelsContainer.Controls.Add(this.integerLabel);
             this.labelsContainer.Controls.Add(this.doubleLabel);
             this.labelsContainer.Controls.Add(this.textLabel);
@@ -129,7 +131,7 @@ namespace lab6
             this.labelsContainer.Controls.Add(this.erroLabel);
             this.labelsContainer.Location = new System.Drawing.Point(152, 50);
             this.labelsContainer.Name = "labelsContainer";
-            this.labelsContainer.Size = new System.Drawing.Size(980, 31);
+            this.labelsContainer.Size = new System.Drawing.Size(1153, 31);
             this.labelsContainer.TabIndex = 13;
             // 
             // integerLabel

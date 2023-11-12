@@ -7,26 +7,6 @@ namespace lab6
     class BinaryFileReaderWriter
     {
 
-       /* public static void SaveToFile<T>(string fileName, T data)
-        {
-            using (FileStream fileStream = new FileStream(fileName, FileMode.Create))
-            {
-                IFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(fileStream, data);
-            }
-        }
-
-        public static T ReadFromFile<T>(string fileName)
-        {
-            using (FileStream fileStream = new FileStream(fileName, FileMode.Open))
-            {
-                IFormatter formatter = new BinaryFormatter();
-                return (T)formatter.Deserialize(fileStream);
-            }
-        }
-*/
-
-
         public void saveIntegers(string path, List<int> numbers)
         {
 
