@@ -18,6 +18,8 @@ namespace lab6
         private List<double> Doubles;
         private List<Person> Persons;
         private List<Tuple<int, double>> IntsDoubles;
+        private List<int> IntsWith;
+        private List<double> DoublesWith;
         public Form1()
         {
            
@@ -26,17 +28,13 @@ namespace lab6
             Doubles = new List<double>();
             Persons = new List<Person>();
             IntsDoubles = new List<Tuple<int, double>>();
+            IntsWith = new List<int>();
+            DoublesWith = new List<double>();
 
             saveIntegersSelected();
             BinaryFileReaderWriter = new BinaryFileReaderWriter();
 
-
-            //Integers.Add(12);
-            //Integers.Add(24);
-            //BinaryFileReaderWriter.SaveToFile("C:\\Users\\DCH\\Desktop\\test.bin", Integers);
-            //Integers.Clear();
-            //Integers = BinaryFileReaderWriter.ReadFromFile<List<int>>("C:\\Users\\DCH\\Desktop\\test.bin");
-            Console.WriteLine("");
+       
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -429,7 +427,7 @@ namespace lab6
         {
             try
             {
-                BinaryFileReaderWriter.saveIntegersAndDoubles(pathInput.Text, IntsDoubles);
+                BinaryFileReaderWriter.saveIntegersAndDoubles(pathInput.Text, Tuple.Create(IntsWith, DoublesWith));
                 erroLabel.Text = "";
             }
             catch (Exception ex) {
@@ -442,13 +440,22 @@ namespace lab6
         {
             try
             {
-                Tuple<int, double> pair = Tuple.Create(int.Parse(integerInput.Text), double.Parse(doubleInput.Text));
-                IntsDoubles.Add(pair);
-                editField.Text = "";
-                foreach (Tuple<int, double> el in IntsDoubles)
-                {
-                    editField.Text += el.Item1 + ", " + el.Item2 + "\r\n";
+                if (!integerInput.Text.Equals("")) {
+                    IntsWith.Add(int.Parse(integerInput.Text));
                 }
+                if (!doubleInput.Text.Equals("")) {
+                    DoublesWith.Add(double.Parse(doubleInput.Text));
+                }
+                //Tuple<int, double> pair = Tuple.Create(int.Parse(integerInput.Text), double.Parse(doubleInput.Text));
+                //IntsDoubles.Add(pair);
+                editField.Text = "";
+                foreach (int el in IntsWith) {
+                    editField.Text += el + "\r\n";
+                }
+                foreach (double el in DoublesWith)
+                {
+                    editField.Text += el + "\r\n";
+                }            
             }
             catch (Exception ex) {
                 erroLabel.Text = ex.Message;
@@ -459,14 +466,28 @@ namespace lab6
 
         private void ReadIntegersAndDoubles(object sender, EventArgs e)
         {
-
-            IntsDoubles = BinaryFileReaderWriter.readIntegersAndDoubles(pathInput.Text).ToList();
-                             
-            editField.Text = "";
-            foreach (Tuple<int, double> el in IntsDoubles)
+            try
             {
-                editField.Text += el.Item1 + ", " + el.Item2 + "\r\n";
+                Tuple<List<int>, List<double>> elements = BinaryFileReaderWriter.readIntegersAndDoubles(pathInput.Text);
+                IntsWith = elements.Item1;
+                DoublesWith = elements.Item2;
+
+                editField.Text = "";
+                foreach (int el in IntsWith)
+                {
+                    editField.Text += el + "\r\n";
+                }
+                foreach (double el in DoublesWith)
+                {
+                    editField.Text += el + "\r\n";
+                }
             }
+            catch (Exception ex)
+            {
+                erroLabel.Text = ex.Message;
+            }
+            
+           
         }
 
 
@@ -488,6 +509,7 @@ namespace lab6
             RemoveClickEvent(addButton);
             RemoveClickEvent(saveButton);
             RemoveClickEvent(readButton);
+            editField.Text = "";
             switch (dataFormat.SelectedIndex) {
                 case 0:
                     saveIntegersSelected();
@@ -522,6 +544,19 @@ namespace lab6
             Doubles = new List<double>();
             Persons = new List<Person>();
             IntsDoubles = new List<Tuple<int, double>>();
+            editField.Text = "";
+        }
+
+        private void selectFile_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Title = "Wybierzz plik";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                pathInput.Text = openFileDialog.FileName;
+            }
         }
     }
 }

@@ -99,32 +99,43 @@ namespace lab6
             }
         }
 
-        public void saveIntegersAndDoubles(string path, List<Tuple<int, double>> numbers)
+        public void saveIntegersAndDoubles(string path, Tuple<List<int>, List<double>> numbers)
         {
 
             using (BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.Create)))
             {
-                foreach (Tuple<int, double> e in numbers)
-                {
-                    writer.Write(e.Item1);
-                    writer.Write(e.Item2);
+                writer.Write(numbers.Item1.Count);
+                writer.Write(numbers.Item2.Count);
+                foreach (int e in numbers.Item1) {
+                    writer.Write(e);
                 }
+                foreach (double e in numbers.Item2)
+                {
+                    writer.Write(e);
+                }             
             }
         }
 
-        public List<Tuple<int, double>> readIntegersAndDoubles(string path)
+        public Tuple<List<int>, List<double>> readIntegersAndDoubles(string path)
         {
             using (BinaryReader reader = new BinaryReader(File.Open(path, FileMode.Open)))
             {
-                List<Tuple<int, double>> numbers = new List<Tuple<int, double>>();
+                List<int> ints = new List<int>();
+                List<double> doubles = new List<double>();
 
-                while (reader.BaseStream.Position < reader.BaseStream.Length)
-                {
-                    Tuple<int, double> element = Tuple.Create(reader.ReadInt32(), reader.ReadDouble());
-                    numbers.Add(element);
+                int numberOfInts = reader.ReadInt32();
+                int numberOfDuobles = reader.ReadInt32();
+
+                for (int i = 0; i < numberOfInts; i++) {
+                    ints.Add(reader.ReadInt32());
                 }
+
+                for (int i = 0; i < numberOfDuobles; i++)
+                {
+                    doubles.Add(reader.ReadDouble());
+                }           
               
-                return numbers;
+                return Tuple.Create(ints, doubles);
             }
         }
 

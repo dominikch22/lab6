@@ -43,6 +43,7 @@ namespace lab6
             this.birthDateLabel = new System.Windows.Forms.Label();
             this.heightLabel = new System.Windows.Forms.Label();
             this.weightLabel = new System.Windows.Forms.Label();
+            this.erroLabel = new System.Windows.Forms.Label();
             this.InputsContainer = new System.Windows.Forms.FlowLayoutPanel();
             this.integerInput = new System.Windows.Forms.TextBox();
             this.doubleInput = new System.Windows.Forms.TextBox();
@@ -55,7 +56,6 @@ namespace lab6
             this.addButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.readButton = new System.Windows.Forms.Button();
-            this.erroLabel = new System.Windows.Forms.Label();
             this.clearMemoryButton = new System.Windows.Forms.Button();
             this.labelsContainer.SuspendLayout();
             this.InputsContainer.SuspendLayout();
@@ -79,6 +79,7 @@ namespace lab6
             this.selectFile.TabIndex = 1;
             this.selectFile.Text = "Przeglądaj";
             this.selectFile.UseVisualStyleBackColor = true;
+            this.selectFile.Click += new System.EventHandler(this.selectFile_Click);
             // 
             // dataFormat
             // 
@@ -216,6 +217,15 @@ namespace lab6
             this.weightLabel.TabIndex = 28;
             this.weightLabel.Text = "Waga";
             // 
+            // erroLabel
+            // 
+            this.erroLabel.AutoSize = true;
+            this.erroLabel.ForeColor = System.Drawing.Color.OrangeRed;
+            this.erroLabel.Location = new System.Drawing.Point(851, 0);
+            this.erroLabel.Name = "erroLabel";
+            this.erroLabel.Size = new System.Drawing.Size(0, 13);
+            this.erroLabel.TabIndex = 29;
+            // 
             // InputsContainer
             // 
             this.InputsContainer.Controls.Add(this.integerInput);
@@ -317,15 +327,6 @@ namespace lab6
             this.readButton.Text = "Odczytaj";
             this.readButton.UseVisualStyleBackColor = true;
             this.readButton.Click += new System.EventHandler(this.read_Click);
-            // 
-            // erroLabel
-            // 
-            this.erroLabel.AutoSize = true;
-            this.erroLabel.ForeColor = System.Drawing.Color.OrangeRed;
-            this.erroLabel.Location = new System.Drawing.Point(851, 0);
-            this.erroLabel.Name = "erroLabel";
-            this.erroLabel.Size = new System.Drawing.Size(0, 13);
-            this.erroLabel.TabIndex = 29;
             // 
             // clearMemoryButton
             // 
